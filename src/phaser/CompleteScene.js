@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { openTipJar } from './support.js'
 import { W, H, background, button, drawCat, starString, text, themeOf, catIdle, fade } from './common.js'
 import { data } from '../save.js'
 import { levelAt } from '../levels/index.js'
@@ -105,6 +106,18 @@ export default class CompleteScene extends Phaser.Scene {
       theme,
     })
     panel.add([replay, menu])
+
+    // Quiet support link: results screen only, inside the card under the actions.
+    panel.add(
+      button(this, 0, 276, '☕ Buy me a coffee', () => openTipJar(), {
+        width: 380,
+        height: 28,
+        size: 12,
+        theme,
+        fill: theme.dark ? 0x2b2f52 : 0xffffff,
+        textColor: theme.dark ? '#efeaff' : theme.text,
+      }),
+    )
 
     text(this, W / 2, H - 34, 'littlejoyarcade.site', 13, theme.subtext, { alpha: 0.7 }).setOrigin(0.5)
   }
